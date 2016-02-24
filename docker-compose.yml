@@ -1,0 +1,19 @@
+db:
+  image: postgres:9.3
+  ports:
+    - "5432:5432"
+  environment:
+    LC_ALL: C.UTF-8
+    POSTGRES_DB: dockerdb
+    POSTGRES_USER: asapadmin
+    POSTGRES_PASSWORD: asapadmin
+
+web:
+  build: .
+  command: python manage.py runserver 0.0.0.0:9000
+  volumes:
+    - .:/code
+  ports:
+    - "9000:9000"
+  links:
+    - db
