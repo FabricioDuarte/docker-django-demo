@@ -14,5 +14,8 @@ RUN pip install -r requirements.txt
 #ADD . /code/
 
 # Corro las migraciones de la BD
-RUN python manage.py makemigrations djangoDocker
-RUN python manage.py migrate
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+#RUN python manage.py makemigrations djangoDocker
+#RUN python manage.py migrate
